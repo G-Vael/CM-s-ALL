@@ -1,0 +1,13 @@
+# Normalize text line endings in the repo (checked out per-OS)
+* text=auto
+
+# Scripts must keep specific endings regardless of OS
+gradlew      text eol=lf
+*.sh         text eol=lf
+*.bat        text eol=crlf
+*.cmd        text eol=crlf
+
+# Treat these as binary (never line-ending/diff munged)
+*.jar  binary
+*.png  binary
+*.ico  binary

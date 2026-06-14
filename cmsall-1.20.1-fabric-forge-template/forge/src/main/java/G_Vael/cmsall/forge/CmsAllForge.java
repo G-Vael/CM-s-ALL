@@ -1,0 +1,37 @@
+package G_Vael.cmsall.forge;
+
+import dev.architectury.platform.forge.EventBuses;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+
+import G_Vael.cmsall.CmsAll;
+import G_Vael.cmsall.core.HarvestEngine;
+import G_Vael.cmsall.forge.client.CmsAllForgeClient;
+
+@Mod(CmsAll.MOD_ID)
+public final class CmsAllForge {
+    public CmsAllForge() {
+        EventBuses.registerModEventBus(CmsAll.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
+        CmsAll.init();
+
+        // LOWEST so claim/protection mods veto the origin break before we start a chain.
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, this::onBlockBreak);
+
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            CmsAllForgeClient.init();
+        }
+    }
+
+    private void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (event.getPlayer() instanceof ServerPlayer player && event.getLevel() instanceof ServerLevel level) {
+            HarvestEngine.handleBreak(level, player, event.getPos(), event.getState());
+        }
+    }
+}

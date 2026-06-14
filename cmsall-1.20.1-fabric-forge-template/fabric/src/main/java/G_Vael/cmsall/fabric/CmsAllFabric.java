@@ -1,0 +1,22 @@
+package G_Vael.cmsall.fabric;
+
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+
+import G_Vael.cmsall.CmsAll;
+import G_Vael.cmsall.core.HarvestEngine;
+
+public final class CmsAllFabric implements ModInitializer {
+    @Override
+    public void onInitialize() {
+        CmsAll.init();
+
+        PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
+            if (world instanceof ServerLevel level && player instanceof ServerPlayer serverPlayer) {
+                HarvestEngine.handleBreak(level, serverPlayer, pos, state);
+            }
+        });
+    }
+}

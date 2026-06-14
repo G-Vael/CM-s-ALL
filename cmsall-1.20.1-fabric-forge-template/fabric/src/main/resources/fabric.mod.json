@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "cmsall",
+  "version": "${version}",
+  "name": "CM'sALL",
+  "description": "Unified MineAll / CutAll / DigAll chain-harvest mod.",
+  "authors": [
+    "G.Vael"
+  ],
+  "license": "MIT",
+  "icon": "assets/cmsall/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "G_Vael.cmsall.fabric.CmsAllFabric"
+    ],
+    "client": [
+      "G_Vael.cmsall.fabric.client.CmsAllFabricClient"
+    ],
+    "modmenu": [
+      "G_Vael.cmsall.fabric.client.CmsAllModMenu"
+    ]
+  },
+  "mixins": [
+    "cmsall.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.2",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "architectury": ">=9.2.14",
+    "fabric-api": "*"
+  }
+}

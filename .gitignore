@@ -1,0 +1,41 @@
+# ---- Gradle / Loom build output & caches (regenerated; never commit) ----
+.gradle/
+**/.gradle/
+**/build/
+**/bin/
+**/run/
+**/runs/
+# (the gradle wrapper jar under gradle/wrapper/ is intentionally NOT ignored — it must be committed)
+
+# ---- Built / packaged artifacts ----
+*.zip
+mod.zip
+mods.zip
+
+# ---- IDE / editor ----
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+*.launch
+*.iws
+
+# ---- Claude / local tooling (internal, has machine-specific paths) ----
+.claude/
+.toolchain/
+
+# ---- Backups & scratch files ----
+新しいフォルダー/
+*.srcbackup/
+.srcbackup/
+_*.log
+_*.py
+_*.json
+_*.lang
+crash-*.txt
+
+# ---- OS ----
+.DS_Store
+Thumbs.db

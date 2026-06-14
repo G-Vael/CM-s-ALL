@@ -1,0 +1,16 @@
+[
+{
+  "modid": "cmsall",
+  "name": "CM'sALL",
+  "description": "Unified MineAll / CutAll / DigAll chain-harvest mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["G.Vael"],
+  "credits": "",
+  "logoFile": "assets/cmsall/icon.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

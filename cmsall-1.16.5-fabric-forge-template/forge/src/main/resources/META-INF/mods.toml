@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[36,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "cmsall"
+version = "${version}"
+displayName = "CM'sALL"
+authors = "G.Vael"
+description = '''
+Unified MineAll / CutAll / DigAll chain-harvest mod.
+'''
+logoFile = "assets/cmsall/icon.png"
+
+[[dependencies.cmsall]]
+modId = "forge"
+mandatory = true
+versionRange = "[36,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cmsall]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.5,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cmsall]]
+modId = "architectury"
+mandatory = true
+versionRange = "[1.32.68,)"
+ordering = "AFTER"
+side = "BOTH"
