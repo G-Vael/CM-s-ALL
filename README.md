@@ -21,7 +21,7 @@ Each Minecraft version and loader ships as its **own jar** (e.g. `cmsall-forge-1
 **Dependencies**
 - **Architectury API** — required on every version *except 1.12.2*.
 - **Fabric API** — required by the Fabric jars.
-- **ModMenu** — *optional*, Fabric only. Adds the in-game config button to the mod list (see [Configuration](#configuration)). Without it, the mod still works; you just configure it from the pause menu or via commands.
+- **ModMenu** — *optional*, Fabric only. Adds the in-game config button to the mod list (see Configuration). Without it, the mod still works; you just configure it from the pause menu or via commands.
 
 ---
 
@@ -36,7 +36,7 @@ Each Minecraft version and loader ships as its **own jar** (e.g. `cmsall-forge-1
 - **Denylist**
   Certain blocks are never chain-broken regardless of the lists — spawners and end-portal frames by default, and you can add your own.
 - **In-Game GUI Configuration**
-  All features and server rules can be configured through an in-game menu — no manual JSON or TOML editing required. See [Configuration](#configuration).
+  All features and server rules can be configured through an in-game menu — no manual JSON or TOML editing required. See Configuration.
 - **Per-Player Activation Modes**
   Players can individually choose how to trigger the mod: Hold (Sneak), Toggle, Always On, or Sneak-Invert.
 - **Auto-Replant**
