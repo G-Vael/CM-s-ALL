@@ -105,6 +105,33 @@ To ensure strict compatibility with protection, claim, and logging mods, CM'sALL
 
 ---
 
+## For Developers (API)
+
+CM'sALL exposes a small, loader-agnostic API so other mods that **move blocks** (e.g. Create contraptions) can keep CM'sALL's player-placed protection following those blocks. Vanilla pistons are handled automatically — this is only for custom, non-piston movers. Call it on the **server thread**.
+
+Class: `cmsall.api.CmsAllTracking`
+
+```java
+import cmsall.api.CmsAllTracking;
+
+// Tell CM'sALL where your blocks go, BEFORE the source is cleared:
+CmsAllTracking.beginMove();
+try {
+    CmsAllTracking.relocate(level, fromTo); // Map<BlockPos, BlockPos>: source -> destination
+    // ... your mod performs its actual setBlock moves here ...
+} finally {
+    CmsAllTracking.endMove();
+}
+```
+
+- `relocate(ServerLevel, BlockPos from, BlockPos to)` — move a single record.
+- `relocate(ServerLevel, Map<BlockPos, BlockPos>)` — bulk move (two-phase; safe for shifting/overlapping sets).
+- `beginMove()` / `endMove()` — suppress record removal during transient placeholder states; optional for single-step moves, but always pair them via try/finally.
+
+Available on every version and loader. (On 1.12.2 the API works for custom movers, but vanilla pistons are not auto-hooked.)
+
+---
+
 ## License
 
 This project is licensed under the **MIT License** — © 2026 G.Vael.
