@@ -68,6 +68,12 @@ public abstract class PistonBaseBlockMixin {
     @Inject(method = MOVE_BLOCKS, at = @At("RETURN"))
     private void cmsall$pistonReturn(Level level, BlockPos pos, Direction facing, boolean extending,
             CallbackInfoReturnable<Boolean> cir) {
+        if (!(level instanceof ServerLevel)) {
+            return;
+        }
+        if (!RuntimeConfig.anyTrackEnabled) {
+            return; // symmetric with cmsall$pistonHead so push/pop are paired on the same condition
+        }
         BlockMoveContext.pop();
     }
 }

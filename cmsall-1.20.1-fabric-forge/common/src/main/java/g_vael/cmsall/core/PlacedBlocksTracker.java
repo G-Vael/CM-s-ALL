@@ -61,6 +61,9 @@ public final class PlacedBlocksTracker {
         if (!RuntimeConfig.anyTrackEnabled) {
             return; // all tracking off — skip the data lookup on the hot setBlock path
         }
+        if (!level.getServer().isSameThread()) {
+            return; // tracker maps are single-thread (server thread); ignore any off-thread setBlock (defensive)
+        }
         if (BlockMoveContext.active()) {
             return; // a piston/API move is in progress; the records were already relocated — don't let the move's setBlocks drop them
         }

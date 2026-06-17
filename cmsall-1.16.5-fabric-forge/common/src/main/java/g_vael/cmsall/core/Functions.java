@@ -103,13 +103,13 @@ public final class Functions {
     /** fixed mechanics are immutable literals — share one instance each instead of allocating a HarvestGroup on every break. */
     private static final HarvestGroup MINE_MECH = new HarvestGroup("mineall", HarvestMode.VEIN,
             Collections.emptyList(), Collections.emptySet(), Collections.emptySet(),
-            true, 26, 256, 16, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.INCLUDE, true);
+            true, 26, 8192, 16, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.INCLUDE, true);
     private static final HarvestGroup CUT_MECH = new HarvestGroup("cutall", HarvestMode.TREE,
             Collections.emptyList(), Collections.emptySet(), Collections.emptySet(),
-            false, 26, 256, 24, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.EXCLUDE, true);
+            false, 26, 8192, 24, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.EXCLUDE, true);
     private static final HarvestGroup DIG_MECH = new HarvestGroup("digall", HarvestMode.LAYER,
             Collections.emptyList(), Collections.emptySet(), Collections.emptySet(),
-            false, 26, 256, 12, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.INCLUDE, true);
+            false, 26, 8192, 12, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.INCLUDE, true);
 
     /** Fixed propagation mechanics per function. */
     public static HarvestGroup mechanics(Kind kind) {

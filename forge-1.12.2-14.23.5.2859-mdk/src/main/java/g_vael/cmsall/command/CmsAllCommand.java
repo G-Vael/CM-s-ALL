@@ -166,8 +166,8 @@ public class CmsAllCommand extends CommandBase {
                     c.trackDigMax = max;
                     break;
             }
-            ConfigManager.save();
             ConfigManager.apply();
+            ConfigManager.save();
             PlacedBlocksTracker.trim(server);
             CmsAllNetwork.syncToAll(server);
             sender.sendMessage(new TextComponentTranslation("cmsall.msg.track_max", kind.name().toLowerCase(), Integer.valueOf(max)));
@@ -292,8 +292,8 @@ public class CmsAllCommand extends CommandBase {
     }
 
     private void persist(MinecraftServer server) {
-        ConfigManager.save();
         ConfigManager.apply();
+        ConfigManager.save();
         CmsAllNetwork.syncToAll(server);
     }
 

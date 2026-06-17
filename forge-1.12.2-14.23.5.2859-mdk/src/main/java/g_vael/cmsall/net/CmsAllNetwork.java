@@ -167,8 +167,8 @@ public final class CmsAllNetwork {
                         return;
                     }
                     ConfigManager.replace(edited);
-                    ConfigManager.save();
                     ConfigManager.apply();
+                    ConfigManager.save();
                     PlacedBlocksTracker.trim(server);
                     CmsAll.LOGGER.info("[CM'sALL] " + player.getName() + " edited server config");
                     syncToAll(server);

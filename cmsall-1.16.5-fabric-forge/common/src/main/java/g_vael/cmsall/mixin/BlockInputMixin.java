@@ -19,11 +19,11 @@ public class BlockInputMixin {
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/server/level/ServerLevel;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"))
     private boolean cmsall$recordCommandPlace(ServerLevel level, BlockPos pos, BlockState state, int flags) {
-        CommandPlaceContext.set(true);
+        CommandPlaceContext.push();
         try {
             return level.setBlock(pos, state, flags);
         } finally {
-            CommandPlaceContext.set(false);
+            CommandPlaceContext.pop();
         }
     }
 }

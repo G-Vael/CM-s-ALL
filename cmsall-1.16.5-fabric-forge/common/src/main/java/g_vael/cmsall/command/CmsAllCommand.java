@@ -52,8 +52,8 @@ public final class CmsAllCommand {
                                 .executes(ctx -> {
                                     boolean value = BoolArgumentType.getBool(ctx, "value");
                                     ConfigManager.server().enabled = value;
-                                    ConfigManager.save();
                                     ConfigManager.apply();
+                                    ConfigManager.save();
                                     CmsAllNetwork.syncToAll(ctx.getSource().getServer());
                                     feedback(ctx, "master switch = " + value);
                                     return 1;
@@ -151,8 +151,8 @@ public final class CmsAllCommand {
         } else {
             list.removeIf(norm::equals);
         }
-        ConfigManager.save();
         ConfigManager.apply();
+        ConfigManager.save();
         CmsAllNetwork.syncToAll(ctx.getSource().getServer());
         feedback(ctx, kind.name().toLowerCase() + " " + (tool ? "tool" : "block")
                 + (add ? " added: " : " removed: ") + norm + " (" + list.size() + ")");
@@ -225,8 +225,8 @@ public final class CmsAllCommand {
 
     private static int setTrack(CommandContext<CommandSourceStack> ctx, Functions.Kind kind, boolean value) {
         setTrackEnabled(kind, value);
-        ConfigManager.save();
         ConfigManager.apply();
+        ConfigManager.save();
         CmsAllNetwork.syncToAll(ctx.getSource().getServer());
         ctx.getSource().sendSuccess(new TranslatableComponent("cmsall.msg.track",
                 kind.name().toLowerCase(), onOff(value)), true);
@@ -247,8 +247,8 @@ public final class CmsAllCommand {
                 c.trackDigMax = clamped;
                 break;
         }
-        ConfigManager.save();
         ConfigManager.apply();
+        ConfigManager.save();
         PlacedBlocksTracker.trim(ctx.getSource().getServer());
         CmsAllNetwork.syncToAll(ctx.getSource().getServer());
         ctx.getSource().sendSuccess(new TranslatableComponent("cmsall.msg.track_max",
@@ -258,8 +258,8 @@ public final class CmsAllCommand {
 
     private static int setOverflow(CommandContext<CommandSourceStack> ctx, String mode) {
         ConfigManager.server().trackOverflow = mode;
-        ConfigManager.save();
         ConfigManager.apply();
+        ConfigManager.save();
         CmsAllNetwork.syncToAll(ctx.getSource().getServer());
         ctx.getSource().sendSuccess(new TranslatableComponent("cmsall.msg.track_overflow", mode), true);
         return 1;

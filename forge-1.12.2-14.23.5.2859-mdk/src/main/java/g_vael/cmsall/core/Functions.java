@@ -101,11 +101,11 @@ public final class Functions {
     }
 
     private static final HarvestGroup MINE_MECH = new HarvestGroup("mineall", HarvestMode.VEIN,
-            true, 26, 256, 16, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.INCLUDE, true);
+            true, 26, 8192, 16, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.INCLUDE, true);
     private static final HarvestGroup CUT_MECH = new HarvestGroup("cutall", HarvestMode.TREE,
-            false, 26, 256, 24, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.EXCLUDE, true);
+            false, 26, 8192, 24, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.EXCLUDE, true);
     private static final HarvestGroup DIG_MECH = new HarvestGroup("digall", HarvestMode.LAYER,
-            false, 26, 256, 12, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.INCLUDE, true);
+            false, 26, 8192, 12, true, DropMode.NORMAL, 1.0f, false, true, PlayerPlaced.INCLUDE, true);
 
     /** Fixed propagation mechanics per function. */
     public static HarvestGroup mechanics(Kind kind) {

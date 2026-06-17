@@ -1,8 +1,8 @@
 package g_vael.cmsall.core;
 
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import it.unimi.dsi.fastutil.longs.Long2IntLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.longs.Long2IntMap;
+import it.unimi.dsi.fastutil.longs.LongIterator;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
@@ -18,10 +18,10 @@ public final class PlacedBlocksData extends SavedData {
 
     private static final String[] KEYS = { "mine", "cut", "dig" };
 
-    /** insertion-ordered so eviction is FIFO; packed-pos -> stable block-key hash; one per Kind ordinal. */
-    @SuppressWarnings("unchecked")
-    private final LinkedHashMap<Long, Integer>[] sets = new LinkedHashMap[]{
-            new LinkedHashMap<Long, Integer>(), new LinkedHashMap<Long, Integer>(), new LinkedHashMap<Long, Integer>()
+    /** insertion-ordered so eviction is FIFO; packed-pos -> stable block-key hash; one per Kind ordinal.
+     *  Primitive long2int map: the per-setBlock hot path (contains/key) must not autobox. */
+    private final Long2IntLinkedOpenHashMap[] sets = {
+            new Long2IntLinkedOpenHashMap(), new Long2IntLinkedOpenHashMap(), new Long2IntLinkedOpenHashMap()
     };
 
     /** rolling snapshot + cursor per kind for the bounded orphan sweep (runtime only). */
@@ -53,13 +53,13 @@ public final class PlacedBlocksData extends SavedData {
     @Override
     public CompoundTag save(CompoundTag tag) {
         for (int i = 0; i < KEYS.length; i++) {
-            LinkedHashMap<Long, Integer> set = sets[i];
+            Long2IntLinkedOpenHashMap set = sets[i];
             long[] positions = new long[set.size()];
             int[] keys = new int[set.size()];
             int j = 0;
-            for (Map.Entry<Long, Integer> e : set.entrySet()) {
-                positions[j] = e.getKey();
-                keys[j] = e.getValue();
+            for (Long2IntMap.Entry e : set.long2IntEntrySet()) {
+                positions[j] = e.getLongKey();
+                keys[j] = e.getIntValue();
                 j++;
             }
             tag.putLongArray(KEYS[i], positions);
@@ -73,16 +73,16 @@ public final class PlacedBlocksData extends SavedData {
     }
 
     public void add(Functions.Kind kind, long packed, int key) {
-        LinkedHashMap<Long, Integer> set = sets[kind.ordinal()];
+        Long2IntLinkedOpenHashMap set = sets[kind.ordinal()];
         if (set.containsKey(packed)) {
             return;
         }
         int max = RuntimeConfig.trackMax[kind.ordinal()];
         if (set.size() >= max) {
             if (RuntimeConfig.trackEvict) {
-                while (set.size() >= max) {
-                    Iterator<Long> it = set.keySet().iterator();
-                    it.next();
+                LongIterator it = set.keySet().iterator(); // FIFO: oldest first (insertion order)
+                while (set.size() >= max && it.hasNext()) {
+                    it.nextLong();
                     it.remove();
                 }
             } else {
@@ -94,7 +94,9 @@ public final class PlacedBlocksData extends SavedData {
     }
 
     public boolean remove(Functions.Kind kind, long packed) {
-        if (sets[kind.ordinal()].remove(packed) != null) {
+        Long2IntLinkedOpenHashMap set = sets[kind.ordinal()];
+        if (set.containsKey(packed)) {
+            set.remove(packed);
             setDirty();
             return true;
         }
@@ -121,11 +123,11 @@ public final class PlacedBlocksData extends SavedData {
 
     /** Evicts the oldest entries until at most max remain. */
     public void trimTo(Functions.Kind kind, int max) {
-        LinkedHashMap<Long, Integer> set = sets[kind.ordinal()];
+        Long2IntLinkedOpenHashMap set = sets[kind.ordinal()];
         boolean removed = false;
-        Iterator<Long> it = set.keySet().iterator();
+        LongIterator it = set.keySet().iterator();
         while (set.size() > max && it.hasNext()) {
-            it.next();
+            it.nextLong();
             it.remove();
             removed = true;
         }
@@ -153,7 +155,7 @@ public final class PlacedBlocksData extends SavedData {
      *  (broken/burned/replaced), independent of the current function block list. */
     public void sweep(ServerLevel level, Functions.Kind kind, int budget) {
         int ord = kind.ordinal();
-        LinkedHashMap<Long, Integer> set = sets[ord];
+        Long2IntLinkedOpenHashMap set = sets[ord];
         if (set.isEmpty()) {
             scanBuf[ord] = null;
             return;
@@ -161,8 +163,9 @@ public final class PlacedBlocksData extends SavedData {
         if (scanBuf[ord] == null || scanIdx[ord] >= scanBuf[ord].length) {
             long[] arr = new long[set.size()];
             int j = 0;
-            for (long v : set.keySet()) {
-                arr[j++] = v;
+            LongIterator it = set.keySet().iterator();
+            while (it.hasNext()) {
+                arr[j++] = it.nextLong();
             }
             scanBuf[ord] = arr;
             scanIdx[ord] = 0;

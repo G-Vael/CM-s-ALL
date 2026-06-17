@@ -26,7 +26,7 @@ import g_vael.cmsall.core.PlacedBlocksTracker;
  * }
  * }</pre>
  *
- * <p>The {@code beginMove()/endMove()} bracket is <b>re-entrant</b> 窶・nesting it (e.g. helpers that each bracket a move) is
+ * <p>The {@code beginMove()/endMove()} bracket is <b>re-entrant</b> - nesting it (e.g. helpers that each bracket a move) is
  * safe. You may instead {@code relocate} before clearing the source and skip the bracket ONLY when the move is a single
  * step that <b>cannot fail</b>.
  *

@@ -6,7 +6,7 @@ package g_vael.cmsall.core;
  * the move makes.
  *
  * <p>Re-entrant by design: {@link #push()}/{@link #pop()} maintain a depth counter (per server thread), so nested
- * moves 窶・a mover whose setBlocks re-enter this path, or helpers that each bracket a move 窶・never let an inner
+ * moves - a mover whose setBlocks re-enter this path, or helpers that each bracket a move - never let an inner
  * {@code pop()} lift an outer move's suppression. {@link #reset()} is the end-of-tick backstop that clears a depth
  * leaked by a caller that pushed without popping.
  */
@@ -29,7 +29,7 @@ public final class BlockMoveContext {
         }
     }
 
-    /** Force depth to zero 窶・end-of-tick backstop for a caller that leaked {@link #push()}. */
+    /** Force depth to zero - end-of-tick backstop for a caller that leaked {@link #push()}. */
     public static void reset() {
         DEPTH.get()[0] = 0;
     }
