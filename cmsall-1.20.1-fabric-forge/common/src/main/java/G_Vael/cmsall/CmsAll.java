@@ -50,7 +50,7 @@ public final class CmsAll {
             OriginPickup.tick();
             DespawnTracker.tick();
             PlacedBlocksTracker.sweep(server);
-            BlockMoveContext.set(false); // backstop: a caller that leaked beginMove() can't suppress removal past one tick
+            BlockMoveContext.reset(); // backstop: a caller that leaked beginMove() can't suppress removal past one tick
         });
         CmsAllNetwork.register();
         PlayerEvent.PLAYER_JOIN.register(CmsAllNetwork::syncTo);

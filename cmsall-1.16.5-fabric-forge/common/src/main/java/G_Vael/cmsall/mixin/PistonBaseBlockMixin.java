@@ -33,7 +33,7 @@ public abstract class PistonBaseBlockMixin {
         if (!RuntimeConfig.anyTrackEnabled) {
             return; // nothing tracked anywhere — skip
         }
-        BlockMoveContext.set(true);
+        BlockMoveContext.push();
     }
 
     /**
@@ -69,6 +69,6 @@ public abstract class PistonBaseBlockMixin {
     @Inject(method = MOVE_BLOCKS, at = @At("RETURN"))
     private void cmsall$pistonReturn(Level level, BlockPos pos, Direction facing, boolean extending,
             CallbackInfoReturnable<Boolean> cir) {
-        BlockMoveContext.set(false);
+        BlockMoveContext.pop();
     }
 }

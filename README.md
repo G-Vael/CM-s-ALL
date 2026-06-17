@@ -130,6 +130,10 @@ try {
 
 Available on every version and loader. (On 1.12.2 the API works for custom movers, but vanilla pistons are not auto-hooked.)
 
+**Partial failures.** If your move can fail partway, keep the `beginMove()/endMove()` bracket and call `relocate` only for the blocks that *actually landed*, **after** the move — blocks that failed to move then keep their source record (fail-safe, so they stay protected). Relocating first and *then* failing leaves the still-present source block protected by nothing: CM'sALL's orphan sweep removes the now-bogus destination record (its stored block id no longer matches the block there), but it cannot re-create a record for an unrecorded source block.
+
+**Soft dependency.** These methods delegate to CM'sALL internals, so calling them when CM'sALL is not installed throws `NoClassDefFoundError`. Gate your calls behind a mod-presence check (your loader's "is mod loaded" query), or depend on CM'sALL as `compileOnly` and reference this class only from code paths that run when CM'sALL is present.
+
 ---
 
 ## License

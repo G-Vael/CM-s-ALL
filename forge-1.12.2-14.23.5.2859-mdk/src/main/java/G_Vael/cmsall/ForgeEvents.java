@@ -76,7 +76,7 @@ public final class ForgeEvents {
         if (event.phase != TickEvent.Phase.END) {
             return;
         }
-        BlockMoveContext.set(false); // backstop: clear any move flag leaked by a caller that forgot endMove()
+        BlockMoveContext.reset(); // backstop: clear any move flag leaked by a caller that forgot endMove()
         PendingBreaks.tick();
         ReplantQueue.tick();
         OriginPickup.tick();
