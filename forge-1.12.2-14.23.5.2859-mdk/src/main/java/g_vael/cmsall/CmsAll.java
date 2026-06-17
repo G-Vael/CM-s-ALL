@@ -19,7 +19,7 @@ import g_vael.cmsall.net.CmsAllNetwork;
 import g_vael.cmsall.proxy.CommonProxy;
 
 /** CM'sALL — Forge 1.12.2 entry point. */
-@Mod(modid = CmsAll.MOD_ID, name = "CM'sALL", version = "1.0.0", acceptedMinecraftVersions = "[1.12.2]",
+@Mod(modid = CmsAll.MOD_ID, name = "CM'sALL", version = "1.0.0+1.12.2", acceptedMinecraftVersions = "[1.12.2]",
         guiFactory = "g_vael.cmsall.client.CmsAllGuiFactory")
 public class CmsAll {
 
