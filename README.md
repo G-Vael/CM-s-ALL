@@ -8,18 +8,18 @@ CM'sALL integrates three essential chain-harvesting functions into a single mod 
 
 ## Supported Versions
 
-| Minecraft | Loaders | Notes |
+| Minecraft | Loaders | Architectury API |
 |-----------|---------------------|----------------------------|
-| 1.21.1 | NeoForge, Fabric | Architectury |
-| 1.21 | NeoForge, Fabric | Architectury |
-| 1.20.1 | Forge, Fabric | Architectury |
-| 1.16.5 | Forge, Fabric | Architectury |
-| 1.12.2 | Forge | Standalone (no Architectury) |
+| 1.21.1 | NeoForge, Fabric | 13.0.8 |
+| 1.21 | NeoForge, Fabric | 13.0.8 |
+| 1.20.1 | Forge, Fabric | 9.2.14 |
+| 1.16.5 | Forge, Fabric | 1.32.68 |
+| 1.12.2 | Forge | — (standalone, not required) |
 
 Each Minecraft version and loader ships as its **own jar** (e.g. `cmsall-forge-1.0.0+1.20.1.jar`, `cmsall-fabric-1.0.0+1.20.1.jar`). Install only the single jar that matches your Minecraft version and loader.
 
 **Dependencies**
-- **Architectury API** — required on every version *except 1.12.2*.
+- **Architectury API** — required on every version *except 1.12.2*, at the version shown per Minecraft version in the table above (9.2.14 for 1.20.1; 13.0.8 for 1.21 / 1.21.1; 1.32.68 for 1.16.5). Any compatible newer build for that Minecraft version also works.
 - **Fabric API** — required by the Fabric jars.
 - **ModMenu** — *optional*, Fabric only. Adds the in-game config button to the mod list (see Configuration). Without it, the mod still works; you just configure it from the pause menu or via commands.
 
