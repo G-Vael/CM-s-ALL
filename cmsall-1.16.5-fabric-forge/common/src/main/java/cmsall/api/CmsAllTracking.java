@@ -9,7 +9,7 @@ import g_vael.cmsall.core.BlockMoveContext;
 import g_vael.cmsall.core.PlacedBlocksTracker;
 
 /**
- * Public API for custom block-movers (Create, etc.) to keep CM'sALL's player-placed protection following blocks they relocate.
+ * Public API for custom block-movers (custom pistons, conveyors, etc.) to keep CM'sALL's player-placed protection following blocks they relocate.
  *
  * <p>Minecraft has no generic "a block moved" event, so a mover that does NOT go through vanilla pistons must tell CM'sALL
  * where its blocks went. Call everything here on the <b>server thread</b>. Recommended pattern: bracket the move and

@@ -107,7 +107,7 @@ To ensure strict compatibility with protection, claim, and logging mods, CM'sALL
 
 ## For Developers (API)
 
-CM'sALL exposes a small, loader-agnostic API so other mods that **move blocks** (e.g. Create contraptions) can keep CM'sALL's player-placed protection following those blocks. Vanilla pistons are handled automatically — this is only for custom, non-piston movers. Call it on the **server thread**.
+CM'sALL exposes a small, loader-agnostic API so other mods that **move blocks** (custom pistons, conveyors, and similar block-moving mods) can keep CM'sALL's player-placed protection following those blocks. Vanilla pistons are handled automatically — this is only for custom, non-piston movers. Call it on the **server thread**.
 
 Class: `cmsall.api.CmsAllTracking`
 
