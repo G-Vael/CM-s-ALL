@@ -111,28 +111,31 @@ CM'sALL exposes a small, loader-agnostic API so other mods that **move blocks** 
 
 Class: `cmsall.api.CmsAllTracking`
 
+**Recommended pattern** — bracket the move, then `relocate` only the blocks that *actually landed*, **after** moving. If the move fails partway, the un-moved source blocks keep their protection:
+
 ```java
 import cmsall.api.CmsAllTracking;
 
-// Tell CM'sALL where your blocks go, BEFORE the source is cleared:
 CmsAllTracking.beginMove();
 try {
-    CmsAllTracking.relocate(level, fromTo); // Map<BlockPos, BlockPos>: source -> destination
     // ... your mod performs its actual setBlock moves here ...
+    CmsAllTracking.relocate(level, landedFromTo); // only blocks that landed; Map<BlockPos, BlockPos>: source -> destination
 } finally {
     CmsAllTracking.endMove();
 }
 ```
 
-- `relocate(ServerLevel, BlockPos from, BlockPos to)` — move a single record.
-- `relocate(ServerLevel, Map<BlockPos, BlockPos>)` — bulk move (two-phase; safe for shifting/overlapping sets).
-- `beginMove()` / `endMove()` — suppress record removal during transient placeholder states; optional for single-step moves, but always pair them via try/finally.
+The bracket is **re-entrant** — nesting `beginMove()/endMove()` (e.g. helpers that each bracket a move) is safe. You may skip the bracket and `relocate` *before* clearing the source **only if** the move is a single step that **cannot fail**.
+
+- `relocate(ServerLevel, BlockPos from, BlockPos to)` — move one record; returns how many were tracked there (0 or 1).
+- `relocate(ServerLevel, Map<BlockPos, BlockPos>)` — bulk move (two-phase; safe for shifting/overlapping sets); returns how many records were carried.
+- `beginMove()` / `endMove()` — suppress record removal during the move; always pair them via try/finally.
 
 Available on every version and loader. (On 1.12.2 the API works for custom movers, but vanilla pistons are not auto-hooked.)
 
-**Partial failures.** If your move can fail partway, keep the `beginMove()/endMove()` bracket and call `relocate` only for the blocks that *actually landed*, **after** the move — blocks that failed to move then keep their source record (fail-safe, so they stay protected). Relocating first and *then* failing leaves the still-present source block protected by nothing: CM'sALL's orphan sweep removes the now-bogus destination record (its stored block id no longer matches the block there), but it cannot re-create a record for an unrecorded source block.
+**Partial failures.** Relocating *first* and then failing leaves the still-present source block protected by nothing: CM'sALL's orphan sweep removes the now-bogus destination record (its stored block id no longer matches the block there), but it **cannot** re-create a record for an unrecorded source block. So relocate-after-landing is the fail-safe order; relocate-first is safe only when the move cannot fail.
 
-**Soft dependency.** These methods delegate to CM'sALL internals, so calling them when CM'sALL is not installed throws `NoClassDefFoundError`. Gate your calls behind a mod-presence check (your loader's "is mod loaded" query), or depend on CM'sALL as `compileOnly` and reference this class only from code paths that run when CM'sALL is present.
+**Soft dependency.** Referencing these methods when CM'sALL is not installed risks `NoClassDefFoundError`. The robust idiom is to **isolate every CM'sALL reference in one dedicated integration class** and touch it only when CM'sALL is present — class linking/verification can load referenced types *before* your guard line runs (e.g. when a type appears in a method signature or field), so "this code path doesn't execute" is not always enough. A presence check around an isolated reference, or a `compileOnly` dependency, both work.
 
 ---
 

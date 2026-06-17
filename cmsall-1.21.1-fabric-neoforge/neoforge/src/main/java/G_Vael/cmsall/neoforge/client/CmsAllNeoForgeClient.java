@@ -1,10 +1,10 @@
-package G_Vael.cmsall.neoforge.client;
+package g_vael.cmsall.neoforge.client;
 
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
-import G_Vael.cmsall.client.CmsAllClient;
-import G_Vael.cmsall.client.CmsAllConfigScreen;
+import g_vael.cmsall.client.CmsAllClient;
+import g_vael.cmsall.client.CmsAllConfigScreen;
 
 /**
  * NeoForge client-only setup. Isolated in its own class (loaded only inside the {@code Dist.CLIENT} branch) so the

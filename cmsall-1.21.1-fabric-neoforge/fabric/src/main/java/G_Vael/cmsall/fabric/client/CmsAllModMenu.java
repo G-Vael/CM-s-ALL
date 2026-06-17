@@ -1,9 +1,9 @@
-package G_Vael.cmsall.fabric.client;
+package g_vael.cmsall.fabric.client;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 
-import G_Vael.cmsall.client.CmsAllConfigScreen;
+import g_vael.cmsall.client.CmsAllConfigScreen;
 
 /**
  * Fabric Mods-list "Config" button, via the (optional) ModMenu API. Opens the CLIENT preferences only - server

@@ -1,4 +1,4 @@
-package G_Vael.cmsall.platform.fabric;
+package g_vael.cmsall.platform.fabric;
 
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.core.BlockPos;
@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-/** Fabric impl of G_Vael.cmsall.platform.PlatformHooks. */
+/** Fabric impl of g_vael.cmsall.platform.PlatformHooks. */
 public final class PlatformHooksImpl {
 
     private PlatformHooksImpl() {

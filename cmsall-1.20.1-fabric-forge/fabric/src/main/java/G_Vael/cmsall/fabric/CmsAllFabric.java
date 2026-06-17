@@ -1,12 +1,12 @@
-package G_Vael.cmsall.fabric;
+package g_vael.cmsall.fabric;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
-import G_Vael.cmsall.CmsAll;
-import G_Vael.cmsall.core.HarvestEngine;
+import g_vael.cmsall.CmsAll;
+import g_vael.cmsall.core.HarvestEngine;
 
 public final class CmsAllFabric implements ModInitializer {
     @Override

@@ -12,13 +12,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "G_Vael.cmsall.fabric.CmsAllFabric"
+      "g_vael.cmsall.fabric.CmsAllFabric"
     ],
     "client": [
-      "G_Vael.cmsall.fabric.client.CmsAllFabricClient"
+      "g_vael.cmsall.fabric.client.CmsAllFabricClient"
     ],
     "modmenu": [
-      "G_Vael.cmsall.fabric.client.CmsAllModMenu"
+      "g_vael.cmsall.fabric.client.CmsAllModMenu"
     ]
   },
   "mixins": [

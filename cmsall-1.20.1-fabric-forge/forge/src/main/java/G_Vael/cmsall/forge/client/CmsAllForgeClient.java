@@ -1,10 +1,10 @@
-package G_Vael.cmsall.forge.client;
+package g_vael.cmsall.forge.client;
 
 import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.fml.ModLoadingContext;
 
-import G_Vael.cmsall.client.CmsAllClient;
-import G_Vael.cmsall.client.CmsAllConfigScreen;
+import g_vael.cmsall.client.CmsAllClient;
+import g_vael.cmsall.client.CmsAllConfigScreen;
 
 /**
  * Forge client-only setup. Isolated in its own class (loaded only inside the {@code Dist.CLIENT} branch) so the

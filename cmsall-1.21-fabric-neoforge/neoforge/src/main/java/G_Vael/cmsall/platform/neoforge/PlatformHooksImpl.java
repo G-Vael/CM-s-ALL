@@ -1,4 +1,4 @@
-package G_Vael.cmsall.platform.neoforge;
+package g_vael.cmsall.platform.neoforge;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
-/** NeoForge impl of G_Vael.cmsall.platform.PlatformHooks. */
+/** NeoForge impl of g_vael.cmsall.platform.PlatformHooks. */
 public final class PlatformHooksImpl {
 
     private PlatformHooksImpl() {

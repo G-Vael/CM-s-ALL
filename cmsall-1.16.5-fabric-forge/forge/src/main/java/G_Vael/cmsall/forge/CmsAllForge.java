@@ -1,4 +1,4 @@
-package G_Vael.cmsall.forge;
+package g_vael.cmsall.forge;
 
 import me.shedaniel.architectury.platform.forge.EventBuses;
 import net.minecraft.server.level.ServerLevel;
@@ -11,9 +11,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
-import G_Vael.cmsall.CmsAll;
-import G_Vael.cmsall.core.HarvestEngine;
-import G_Vael.cmsall.forge.client.CmsAllForgeClient;
+import g_vael.cmsall.CmsAll;
+import g_vael.cmsall.core.HarvestEngine;
+import g_vael.cmsall.forge.client.CmsAllForgeClient;
 
 /** Forge entry point (1.16.5). */
 @Mod(CmsAll.MOD_ID)

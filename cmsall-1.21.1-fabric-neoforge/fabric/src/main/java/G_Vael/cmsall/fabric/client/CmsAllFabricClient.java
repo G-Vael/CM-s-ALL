@@ -1,8 +1,8 @@
-package G_Vael.cmsall.fabric.client;
+package g_vael.cmsall.fabric.client;
 
 import net.fabricmc.api.ClientModInitializer;
 
-import G_Vael.cmsall.client.CmsAllClient;
+import g_vael.cmsall.client.CmsAllClient;
 
 public final class CmsAllFabricClient implements ClientModInitializer {
     @Override

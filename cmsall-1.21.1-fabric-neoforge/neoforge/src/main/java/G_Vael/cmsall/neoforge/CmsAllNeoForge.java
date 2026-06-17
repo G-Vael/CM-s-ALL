@@ -1,4 +1,4 @@
-package G_Vael.cmsall.neoforge;
+package g_vael.cmsall.neoforge;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,9 +9,9 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
-import G_Vael.cmsall.CmsAll;
-import G_Vael.cmsall.core.HarvestEngine;
-import G_Vael.cmsall.neoforge.client.CmsAllNeoForgeClient;
+import g_vael.cmsall.CmsAll;
+import g_vael.cmsall.core.HarvestEngine;
+import g_vael.cmsall.neoforge.client.CmsAllNeoForgeClient;
 
 @Mod(CmsAll.MOD_ID)
 public final class CmsAllNeoForge {
