@@ -46,8 +46,8 @@ public final class CmsAllTracking {
     private CmsAllTracking() {
     }
 
-    /** Carry the placed-block record (with its block id) from one position to another, on the server thread. Call before the
-     *  source is cleared. Returns the number of records moved (0 if nothing was tracked there, otherwise 1). */
+    /** Carry the placed-block record (with its block id) from one position to another, on the server thread. When using
+     *  {@link #beginMove()}/{@link #endMove()}, call this after the block has successfully landed at its destination (see the class doc for the fail-safe ordering). Returns the number of records moved (0 if nothing was tracked there, otherwise 1). */
     public static int relocate(World world, BlockPos from, BlockPos to) {
         return PlacedBlocksTracker.relocate(world, from, to);
     }
